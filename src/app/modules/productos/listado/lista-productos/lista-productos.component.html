@@ -1,0 +1,90 @@
+
+
+    
+
+    <div class="contenedor">
+
+        <div class="contenedor-titulo">
+            <span> Lista de Productos</span>
+        </div>
+    <br>
+    <div class="contenedor-buscador">
+        <div class="contenedor-buscador-hijo1">
+            <input type="text" placeholder="Ingrese el nombre del producto a buscar..."> 
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="contenedor-buscador-hijo2">
+            <button (click)="redireccionar('/product/new')" class="button-registrar">Registrar</button>
+        </div>
+    </div>
+<br>
+
+<div class="contenedor-tabla">
+    <table>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Precio de Compra
+            </th>
+            <th>
+                Precio de venta
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+        <tr *ngFor="let producto of listaProductosMostrandose">
+            <td>
+                <div class=" contenedorimgLista"><img *ngIf="producto.image != ''" [src]="producto.image" alt=""></div>
+            </td>
+            <td>
+                {{producto.name}}
+            </td>
+            <td>
+                {{producto.purchasePrice}}
+            </td>
+            <td>
+                {{producto.salePrice}}
+            </td>
+            <td>
+                {{producto.stock}}
+            </td>
+            <td class="iconos">
+                <button class="button-añadir"> 
+                    <i class="fa-solid fa-plus" id="añadir"></i> 
+                </button>
+                <button class="button-ojo"> 
+                    <i class="fa-regular fa-eye" id="ojo"></i>
+                </button>
+
+                <button (click)="redireccionar('product/edit/'+producto.id)"  class="button-editar">
+                    <i class="fa-regular fa-pen-to-square" id="editar"></i>
+                </button>
+                <button (click)="eliminarProducto(producto)" class="button-eliminar">
+                    <i class="fa-solid fa-trash" id="eliminar"></i>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<br>
+<div class="contenedor-paginas">
+<div>{{pagActual}}</div> 
+<div>
+    <button (click)="cambiarPagina(1)"> << </button>
+    <button (click)="cambiarPagina((pagActual - 1))"> < </button>
+    <button (click)="cambiarPagina(boton)"  *ngFor="let boton of numBotones">{{boton}}</button>
+    <button (click)="cambiarPagina((pagActual + 1))"> > </button>
+    <button (click)="cambiarPagina((numPaginas))"> >> </button>
+</div>
+</div>
+</div>
